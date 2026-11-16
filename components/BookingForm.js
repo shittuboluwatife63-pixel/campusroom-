@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SEATS_PER_SLOT } from "../data";
 import { useBookings } from "../context/BookingsContext";
 
@@ -19,10 +19,6 @@ export default function BookingForm({ room }) {
   const { bookings, addBooking, isHydrated } = useBookings();
   const today = getLocalDate();
   const selectedDate = date || today;
-
-  useEffect(() => {
-    setDate(today);
-  }, [today]);
 
   function seatsLeft(timeSlot) {
     const booked = bookings.filter(
@@ -105,7 +101,11 @@ export default function BookingForm({ room }) {
             className="h-12 w-full rounded-xl border border-ink/15 bg-canvas px-3 text-sm text-ink outline-none focus:border-forest focus:ring-4 focus:ring-forest/10"
           />
           {errors.name && (
-            <p id="booking-name-error" className="mt-1.5 text-sm font-medium text-red-700">
+            <p
+              id="booking-name-error"
+              role="alert"
+              className="mt-1.5 text-sm font-medium text-red-700"
+            >
               {errors.name}
             </p>
           )}
@@ -134,7 +134,11 @@ export default function BookingForm({ room }) {
             className="w-full resize-y rounded-xl border border-ink/15 bg-canvas px-3 py-3 text-sm text-ink outline-none placeholder:text-ink/35 focus:border-forest focus:ring-4 focus:ring-forest/10"
           />
           {errors.purpose && (
-            <p id="booking-purpose-error" className="mt-1.5 text-sm font-medium text-red-700">
+            <p
+              id="booking-purpose-error"
+              role="alert"
+              className="mt-1.5 text-sm font-medium text-red-700"
+            >
               {errors.purpose}
             </p>
           )}
@@ -162,7 +166,11 @@ export default function BookingForm({ room }) {
             className="h-12 w-full rounded-xl border border-ink/15 bg-canvas px-3 text-sm text-ink outline-none focus:border-forest focus:ring-4 focus:ring-forest/10"
           />
           {errors.date && (
-            <p id="booking-date-error" className="mt-1.5 text-sm font-medium text-red-700">
+            <p
+              id="booking-date-error"
+              role="alert"
+              className="mt-1.5 text-sm font-medium text-red-700"
+            >
               {errors.date}
             </p>
           )}
